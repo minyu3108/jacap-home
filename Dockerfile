@@ -8,6 +8,7 @@ RUN apt-get update \
 
 RUN a2dismod mpm_event mpm_worker || true \
     && a2enmod mpm_prefork rewrite headers \
+    RUN rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.*
     && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
 COPY . /var/www/html/
