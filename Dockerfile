@@ -7,3 +7,6 @@ RUN a2enmod rewrite
 COPY . /var/www/html/
 
 RUN chown -R www-data:www-data /var/www/html
+
+RUN echo "=== ENABLED MPM ===" && \
+    ls -la /etc/apache2/mods-enabled/ | grep mpm || true
