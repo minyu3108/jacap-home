@@ -6,18 +6,11 @@ RUN apt-get update \
     && docker-php-ext-install -j"$(nproc)" pdo pdo_mysql mysqli gd \
     && rm -rf /var/lib/apt/lists/*
 
-RUN a2enmod rewrite headers \
+RUN a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork rewrite headers \
     && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
-
-# 診斷：build log 會印出目前載入的 MPM 與設定來源
-RUN echo "=== mods-enabled ===" && ls -l /etc/apache2/mods-enabled | grep -i mpm; \
-    echo "=== grep mpm ===" && grep -rn -i "mpm" /etc/apache2 --include=*.conf --include=*.load | grep -i loadmodule; \
-    echo "=== apache -M ===" && apache2ctl -M 2>&1 | grep -i mpm
 
 COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
-# Railway 的 PORT
-RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf \
-    && sed -i 's/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/' /etc/apache2/sites-available/000-default.conf
-ENV PORT=80
+CMD ["bash", "-c", "echo '=== mods-enabled ==='; ls -l /etc/apache2/mods-enabled | grep -i mpm; echo '=== LoadModule mpm ==='; grep -rn -i 'LoadModule.*mpm' /etc/apache2/; sed -i \"s/Listen 80/Listen ${PORT:-80}/\" /etc/apache2/ports.conf; sed -i \"s/<VirtualHost \\*:80>/<VirtualHost *:${PORT:-80}>/\" /etc/apache2/sites-available/000-default.conf; exec apache2-foreground"]
