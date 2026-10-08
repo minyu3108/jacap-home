@@ -1,0 +1,90 @@
+/* 홈페이지 스타일 글쓰기 화면: admin.css 위에 얹어서 색만 다시 칠해요.
+   admin.css의 구조/기능(자바스크립트 동작 포함)은 전혀 안 건드려요.
+   "사이트 설정 → 기본 설정 → 글 에디터 화면 모드"에 따라 .et-dark 또는 .et-light 클래스가 붙어요. */
+
+body.site-editor{
+  min-height:100vh;
+  position:relative;
+}
+.se-bg{position:fixed;inset:0;z-index:0;background-color:#12131a;background-size:cover;background-position:center}
+.se-top,.se-wrap{position:relative;z-index:1}
+
+/* 위쪽 바: 사이트 뒤로가기 버튼 느낌 (다크/라이트 공통 구조) */
+.se-top{display:flex;align-items:center;gap:14px;padding:20px clamp(16px,4vw,40px) 6px;max-width:920px;margin:0 auto}
+.se-back{flex:none;width:44px;height:44px;border-radius:50%;background:rgba(127,127,127,.16);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:border-color .15s ease}
+.se-back:hover{border-color:var(--brand)}
+.se-ttl{font-family:'Gowun Batang',serif;font-size:20px;font-weight:700}
+.se-wrap{max-width:920px;margin:0 auto;padding:14px clamp(16px,4vw,40px) 60px}
+body.site-editor .card{backdrop-filter:blur(8px)}
+
+@media (max-width:700px){
+  .se-top,.se-wrap{padding-left:16px;padding-right:16px}
+}
+
+/* =====================================================================
+   다크 모드
+   ===================================================================== */
+body.site-editor.et-dark{
+  --bg:#12131a; --card:rgba(20,20,34,.72); --ink:#ecebf1; --mute:#a9a7ba; --line:rgba(255,255,255,.16);
+  --brand:#45d6c8; --brand-d:#33b0a4; --danger:#e5483f;
+  background:#12131a;
+}
+.et-dark .se-bg{background-color:#12131a}
+.et-dark .se-ttl,.et-dark .se-back{color:#fff}
+body.site-editor.et-dark a{color:#8fe3da}
+
+body.site-editor.et-dark input[type=text],
+body.site-editor.et-dark input[type=number],
+body.site-editor.et-dark input[type=password],
+body.site-editor.et-dark input[type=date],
+body.site-editor.et-dark select,
+body.site-editor.et-dark textarea{
+  background:rgba(255,255,255,.06); color:#ecebf1; border:1px solid var(--line);
+}
+body.site-editor.et-dark input[type=text]::placeholder,
+body.site-editor.et-dark textarea::placeholder{color:#7f7d92}
+body.site-editor.et-dark input:focus,body.site-editor.et-dark select:focus,body.site-editor.et-dark textarea:focus,body.site-editor.et-dark [contenteditable]:focus{outline:2px solid #45d6c8}
+body.site-editor.et-dark input[type=color]{background:transparent;border-color:var(--line)}
+
+body.site-editor.et-dark .btn.ghost{background:rgba(255,255,255,.06);color:#8fe3da;border-color:var(--line)}
+body.site-editor.et-dark .btn.danger{background:rgba(229,72,63,.12);border-color:rgba(229,72,63,.5);color:#ff8f88}
+
+body.site-editor.et-dark .htmled{background:rgba(255,255,255,.05);border-color:var(--line)}
+body.site-editor.et-dark .ed-bar{background:rgba(255,255,255,.04);border-color:var(--line)}
+body.site-editor.et-dark .ed-bar button,body.site-editor.et-dark .ed-bar select,body.site-editor.et-dark .ed-c{background:rgba(255,255,255,.07);border-color:var(--line);color:#ecebf1}
+body.site-editor.et-dark .ed-area{color:#ecebf1}
+
+body.site-editor.et-dark .imgs-row{background:rgba(255,255,255,.05);border-color:var(--line)}
+body.site-editor.et-dark .imgs-name{color:#cfced9}
+body.site-editor.et-dark .pill.password{background:rgba(255,196,110,.16);color:#ffd9a0}
+body.site-editor.et-dark .help{color:#a9a7ba}
+body.site-editor.et-dark .flash.ok{background:rgba(69,214,200,.15);color:#8fe3da;border:1px solid rgba(69,214,200,.4)}
+body.site-editor.et-dark .flash.err{background:rgba(229,72,63,.15);color:#ff8f88;border:1px solid rgba(229,72,63,.4)}
+
+/* =====================================================================
+   라이트 모드
+   ===================================================================== */
+body.site-editor.et-light{
+  --bg:#f3f3f6; --card:rgba(255,255,255,.86); --ink:#22232c; --mute:#6c6d7c; --line:rgba(0,0,0,.12);
+  --brand:#1f9e93; --brand-d:#177a71; --danger:#cf3d35;
+  background:#f3f3f6;
+}
+.et-light .se-bg{background-color:#f3f3f6}
+.et-light .se-ttl,.et-light .se-back{color:#22232c}
+.et-light .se-ttl{text-shadow:0 1px 3px rgba(255,255,255,.6)}
+.et-light .se-back{background:rgba(255,255,255,.55);border-color:rgba(0,0,0,.14)}
+body.site-editor.et-light a{color:var(--brand-d)}
+
+body.site-editor.et-light .card{background:var(--card)}
+body.site-editor.et-light input[type=text],
+body.site-editor.et-light input[type=number],
+body.site-editor.et-light input[type=password],
+body.site-editor.et-light input[type=date],
+body.site-editor.et-light select,
+body.site-editor.et-light textarea{
+  background:#fff; color:#22232c; border:1px solid #cfd0da;
+}
+body.site-editor.et-light .htmled{background:#fff;border-color:#cfd0da}
+body.site-editor.et-light .ed-bar{background:#f5f5f8;border-color:#cfd0da}
+body.site-editor.et-light .ed-bar button,body.site-editor.et-light .ed-bar select,body.site-editor.et-light .ed-c{background:#fff;border-color:#d3d4de;color:#22232c}
+body.site-editor.et-light .imgs-row{background:#fafafd;border-color:#e2e3ea}

@@ -1,0 +1,24 @@
+%S%{color:var(--rl-ink);font-family:var(--rl-font);line-height:1.7}
+%S% .textchatcontainer,%S% .textchatcontainer .content{margin:0;padding:0;background:none}
+%S% .message{position:relative;display:block;min-height:1.8em;margin:0;padding:.7em 1.1em .75em 5.7em;background:var(--rl-row);border-bottom:1px solid var(--rl-line);overflow:hidden;overflow-wrap:anywhere;text-align:left;font-style:normal;font-weight:400}
+%S% .content>.message:first-child{border-top:1px solid var(--rl-line)}
+%S% .message .spacer,%S% .message .flyout,%S% .message .tstamp,%S% .message .avatar:empty{display:none}
+%S% .message .avatar{position:absolute;left:1em;top:.7em;width:3.7em;height:3.7em;display:block}
+%S% .message .avatar img{display:block;width:100%;height:100%;object-fit:cover;border-radius:4px}
+%S% .message:has(>.avatar img){min-height:5em}
+%S% .message .by{font-weight:800;margin-right:.4em}
+%S% .message.desc,%S% .message.emote{padding-left:1.1em;padding-right:1.1em;text-align:center;font-style:italic;font-weight:700}
+%S% .message.emote{background:rgba(250,214,163,.85);color:#3a2a12}
+%S% .message>img{display:block;max-width:100%;height:auto;margin:.4em auto;position:relative;left:-2.3em}
+%S% .message code{font-family:inherit;font-weight:inherit;font-style:inherit;background:rgba(0,0,0,.08);padding:0 .25em;border-radius:3px}
+%S% .sheet-rolltemplate-coc-1{margin-top:.45em;font-style:normal;font-weight:400;text-align:left}
+%S% .sheet-rolltemplate-coc-1 table{width:100%;border-collapse:collapse;border:1px solid #000;background:#c3c3c3;color:#000}
+%S% .sheet-rolltemplate-coc-1 caption{caption-side:top;background:#000;color:#fff;font-weight:700;text-align:center;padding:.35em .5em}
+%S% .sheet-rolltemplate-coc-1 td{padding:.3em .5em;vertical-align:middle;border:0}
+%S% .sheet-template_label{font-weight:700;width:34%;text-align:left}
+%S% .sheet-template_value{text-align:center}
+%S% .sheet-template_value[style*="background"]{color:#fff}
+%S% .inlinerollresult{display:inline-block;padding:0 .3em;margin:0 .1em;border:2px solid #000;background:rgba(255,255,255,.35);color:#000;font-weight:400;font-style:normal;line-height:1.5}
+%S% .inlinerollresult.fullcrit{border-color:#3fb315;background:#88cc00}
+%S% .inlinerollresult.fullfail{border-color:#b31515;background:#fe6969}
+%S% .inlinerollresult.importantroll{border-color:#4a57ed}
